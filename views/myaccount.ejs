@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <%- include('./partials/header') %>
+    <div class="min-h-screen bg-gray-100 py-10 flex flex-col items-center">
+        <div class="w-full max-w-2xl bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-blue-700">My Account</h2>
+            <div class="mb-6">
+                <p><span class="font-semibold">Name:</span> <%= user.fullname %></p>
+                <p><span class="font-semibold">Email:</span> <%= user.email %></p>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-blue-600">My Orders</h3>
+            <% if (orders.length === 0) { %>
+                <div class="text-gray-500">You have no orders yet.</div>
+            <% } else { %>
+                <div class="space-y-6">
+                <% orders.forEach(function(order) { %>
+                    <div class="border rounded-lg p-4 bg-gray-50">
+                        <div class="mb-2">
+                            <span class="font-semibold">Order ID:</span> <%= order._id %>
+                            <span class="ml-4 font-semibold">Date:</span> <%= order.createdAt.toLocaleString() %>
+                        </div>
+                        <div class="mb-2">
+                            <span class="font-semibold">Payment Mode:</span> <%= order.paymentMode || 'N/A' %>
+                        </div>
+                        <div class="mb-2">
+                            <span class="font-semibold">Total Price:</span> ₹ <%= order.totalPrice %>
+                        </div>
+                        <div class="mb-2">
+                            <span class="font-semibold">Address:</span> <%= order.address.flat %>, <%= order.address.area %>, <%= order.address.pincode %>
+                        </div>
+                        <div>
+                            <span class="font-semibold">Products:</span>
+                            <ul class="list-disc ml-6">
+                                <% order.products.forEach(function(prod) { %>
+                                    <li>
+                                        <% if (prod.name) { %>
+                                            <span class="font-semibold"><%= prod.name %></span>
+                                            <span class="text-gray-500 ml-2">(<%= prod._id %>)</span>
+                                        <% } else { %>
+                                            <%= prod %>
+                                        <% } %>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        </div>
+                    </div>
+                <% }) %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <%- include('./partials/footer') %>
+</body>
+</html>
