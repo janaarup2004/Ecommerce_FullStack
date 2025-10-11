@@ -21,7 +21,6 @@
     "express-session": "^1.18.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.4",
-    "multer": "^2.0.2",
-    "razorpay": "^2.9.6"
+    "multer": "^2.0.2"
   }
 }

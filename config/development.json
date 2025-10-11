@@ -1,4 +1,4 @@
 {
-    "MONGODB_URI": "mongodb://127.0.0.1:27017/ecommerce"
+    "MONGODB_URI": "mongodb+srv://arupjana:arupjana@cluster0.falgke6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 }
 
